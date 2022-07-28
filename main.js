@@ -1,10 +1,11 @@
 
 
         function handleConnection() {
+            var titleElement = document.getElementById('status-title');
             if (navigator.onLine) {
                 isReachable(getServerUrl()).then(function (online) {
                     if (online) {
-                        // handle online status
+                        titleElement.textContent="IRS ONLINE :)";
                         console.log('online');
                     } else {
                         console.log('no connectivity');
@@ -12,6 +13,7 @@
                 });
             } else {
                 // handle offline status
+                titleElement.textContent="***IRS OFFLINE NOW***";
                 console.log('offline');
             }
         }
