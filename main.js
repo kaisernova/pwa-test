@@ -8,6 +8,7 @@
                         titleElement.textContent="IRS ONLINE :)";
                         console.log('online');
                     } else {
+                        titleElement.textContent="IRS NO CONNECTION";    
                         console.log('no connectivity');
                     }
                 });
