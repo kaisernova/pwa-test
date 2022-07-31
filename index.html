@@ -92,7 +92,7 @@
 			}
 		}
 
-		var worker = new Worker('worker.js');
+		var worker = new Worker('/worker.js');
 		worker.onmessage = function(event) {
 			console.log("ejecutando worker");
 			console.log(event.data);
