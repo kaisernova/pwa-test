@@ -17,16 +17,15 @@
 	<!-- Side Navigation -->
 	<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-center"
 		style="display: none" id="mySidebar">
-		<h1 class="w3-xxxlarge w3-text-theme">Side Navigation</h1>
+		<h1 class="w3-xxxlarge w3-text-theme">Men&uacute;</h1>
 		<button class="w3-bar-item w3-button" onclick="w3_close()">
 			Close <i class="fa fa-remove"></i>
 		</button>
-		<a href="#" class="w3-bar-item w3-button">Link 1</a> <a href="#"
-			class="w3-bar-item w3-button">Link 2</a>
+		<a id="installApp" class="install-app-btn" href="javascript:void(0);">Instalar</a> 		
 	</nav>
 
 	<!-- Header -->
-	<header class="w3-container w3-theme w3-padding" id="myHeader">
+	<header class="w3-container w3-theme" id="myHeader">
 		<i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>
 		<div class="w3-center">
 			<h4 id="status-title"></h4>
@@ -35,31 +34,6 @@
 	</header>
 
 
-	<div>TEST HERE!!!!!1</div>
-	<a id="installApp" class="install-app-btn" href="javascript:void(0);">Install</a>
-	<fieldset>
-		<label> <span>Server URL for connectivity test:</span> <input
-			id="serverUrl" style="width: 100%">
-		</label>
-	</fieldset>
-	<script>
-		document.getElementById('serverUrl').value = window.location.origin;
-	</script>
-
-	<p>
-		<i>Use Network Panel in DevTools to toggle Offline status</i>
-	</p>
-
-	<h2 class="w3-center">Progress Bars</h2>
-	<div class="w3-container">
-
-		<div class="w3-light-gray">
-			<div id="myBar" class="w3-center w3-padding w3-theme"
-				style="width: 5%">5%</div>
-		</div>
-		<br>
-		<button class="w3-btn w3-theme" onclick="move()">Click Me</button>
-	</div>
 	<hr>
 	<a href="javascript:void(0);" onclick="ejecutaWorker(); return false;">click worker</a>
 	<script src="main.js"></script>
