@@ -10,7 +10,13 @@
 	href="https://www.w3schools.com/lib/w3-theme-teal.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.js"></script>
+<script type="text/javascript">
+	var subscribersSiteId = 'e6f57397-34eb-4e0a-be00-4567cd133f79';
+</script>
+<script type="text/javascript"
+	src="https://cdn.subscribers.com/assets/subscribers.js"></script>
 </head>
 
 <body>
@@ -21,7 +27,7 @@
 		<button class="w3-bar-item w3-button" onclick="w3_close()">
 			Close <i class="fa fa-remove"></i>
 		</button>
-		<a id="installApp" class="install-app-btn" href="javascript:void(0);">Instalar</a> 		
+		<a id="installApp" class="install-app-btn" href="javascript:void(0);">Instalar</a>
 	</nav>
 
 	<!-- Header -->
@@ -35,7 +41,8 @@
 
 
 	<hr>
-	<a href="javascript:void(0);" onclick="ejecutaWorker(); return false;">click worker</a>
+	<a href="javascript:void(0);" onclick="ejecutaWorker(); return false;">click
+		worker</a>
 	<script src="main.js"></script>
 	<script>
 		// Side navigation
@@ -71,12 +78,13 @@
 			console.log("ejecutando worker");
 			console.log(event.data);
 		};
-		
+
 		function ejecutaWorker() {
-			var json = {"algo":"666"};
+			var json = {
+				"algo" : "666"
+			};
 			worker.postMessage(json);
 		}
-		
 	</script>
 
 </body>
