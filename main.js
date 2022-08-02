@@ -79,6 +79,7 @@ installApp.addEventListener('click', async () => {
 
 
 //*******************************************************************/
+var isSubscribed = false;
 if ('Notification' in window && Notification.permission != 'granted') {
     console.log('Ask user permission')
     Notification.requestPermission(status => {  
@@ -150,6 +151,7 @@ const subscribeUser = async () => {
       applicationServerKey
     })
     .then((subscription) => {
+		isSubscribed = true;
         console.log('User is subscribed newly:', subscription);
         updateSubscriptionOnServer(subscription);
     })
