@@ -79,7 +79,7 @@ installApp.addEventListener('click', async () => {
 
 
 //*******************************************************************/
-var isSubscribed = false;
+
 if ('Notification' in window && Notification.permission != 'granted') {
     console.log('Ask user permission')
     Notification.requestPermission(status => {  
@@ -110,37 +110,10 @@ const displayNotification = notificationTitle => {
 };
 
 const updateSubscriptionOnYourServer = subscription => {
-    console.log('Write your ajax code here to save the user subscription in your DB', subscription);
-    // write your own ajax request method using fetch, jquery, axios to save the subscription in your server for later use.
+	console.log('Write your ajax code here to save the user subscription in your DB', subscription);
+    console.log(JSON.stringify(subscription))
 };
 
-
-function updateSubscriptionOnServer(token) {
-
-    if (isSubscribed) {
-        return database.ref('device_ids')
-                .equalTo(token)
-                .on('child_added', snapshot => snapshot.ref.remove())
-    }
-
-    database.ref('device_ids').once('value')
-        .then(snapshots => {
-            let deviceExists = false
-
-            snapshots.forEach(childSnapshot => {
-                if (childSnapshot.val() === token) {
-                    deviceExists = true
-                    return console.log('Device already registered.');
-                }
-
-            })
-
-            if (!deviceExists) {
-                console.log('Device subscribed');
-                return database.ref('device_ids').push(token)
-            }
-        })
-}
 
 const subscribeUser = async () => {
     const swRegistration = await navigator.serviceWorker.getRegistration();
@@ -150,10 +123,9 @@ const subscribeUser = async () => {
       userVisibleOnly: true,
       applicationServerKey
     })
-    .then((subscription) => {
-		isSubscribed = true;
+    .then((subscription) => {		
         console.log('User is subscribed newly:', subscription);
-        updateSubscriptionOnServer(subscription);
+        updateSubscriptionOnYourServer(subscription);
     })
     .catch((err) => {
         if (Notification.permission === 'denied') {
