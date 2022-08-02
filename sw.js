@@ -10,14 +10,6 @@ Copyright 2015, 2019 Google Inc. All Rights Reserved.
  See the License for the specific language governing permissions and
  limitations under the License.
 */
-self.addEventListener('push', (event) => {
-  const json = JSON.parse(event.data.text())
-  console.log('Push Data', event.data.text())
-  self.registration.showNotification(json.header, json.options)
-});
-
-
-
 
 // Incrementing OFFLINE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
