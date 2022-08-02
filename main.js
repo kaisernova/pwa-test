@@ -113,6 +113,34 @@ const updateSubscriptionOnYourServer = subscription => {
     // write your own ajax request method using fetch, jquery, axios to save the subscription in your server for later use.
 };
 
+
+function updateSubscriptionOnServer(token) {
+
+    if (isSubscribed) {
+        return database.ref('device_ids')
+                .equalTo(token)
+                .on('child_added', snapshot => snapshot.ref.remove())
+    }
+
+    database.ref('device_ids').once('value')
+        .then(snapshots => {
+            let deviceExists = false
+
+            snapshots.forEach(childSnapshot => {
+                if (childSnapshot.val() === token) {
+                    deviceExists = true
+                    return console.log('Device already registered.');
+                }
+
+            })
+
+            if (!deviceExists) {
+                console.log('Device subscribed');
+                return database.ref('device_ids').push(token)
+            }
+        })
+}
+
 const subscribeUser = async () => {
     const swRegistration = await navigator.serviceWorker.getRegistration();
     const applicationServerPublicKey = 'BGbPmLZuugsyomafsSr8Lu2c_O6oPj_6YuxBpZxCPtoEvUnLggPqlNt8oofh4MFW08K28glYYiztmOexIN5Aw9I'; // paste your webpush certificate public key
@@ -148,6 +176,8 @@ const urlB64ToUint8Array = (base64String) => {
     return outputArray;
 };
 
+
+
 const checkSubscription = async () => {
     const swRegistration = await navigator.serviceWorker.getRegistration();
     swRegistration.pushManager.getSubscription()
@@ -161,6 +191,8 @@ const checkSubscription = async () => {
         }
     });
 };
+
+
 
 checkSubscription();
 
