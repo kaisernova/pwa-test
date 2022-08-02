@@ -10,25 +10,11 @@ Copyright 2015, 2019 Google Inc. All Rights Reserved.
  See the License for the specific language governing permissions and
  limitations under the License.
 */
-
-import {
-    initializeApp 
-}
-from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-import {
-	getMessaging
-}
-from "https://www.gstatic.com/firebasejs/9.9.1/firebase-messaging.js";
-
-const firebaseApp = initializeApp({
-    apiKey: "AIzaSyDiTgNck9EhaHBv90bshqFRXJA292Vynn4",
-    authDomain: "irspwa.firebaseapp.com",
-    projectId: "irspwa",
-    storageBucket: "irspwa.appspot.com",
-    messagingSenderId: "911158161108",
-    appId: "1:911158161108:web:e9428e82a948662d5a9541"
+self.addEventListener('push', (event) => {
+  const json = JSON.parse(event.data.text())
+  console.log('Push Data', event.data.text())
+  self.registration.showNotification(json.header, json.options)
 });
-const messaging = getMessaging(firebaseApp);
 
 
 
