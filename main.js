@@ -37,7 +37,8 @@ function isReachable(url) {
 }
 
 function getServerUrl() {
-	return document.getElementById('serverUrl').value || window.location.origin;
+	//window.location.origin
+	return window.location.origin;
 }
 
 

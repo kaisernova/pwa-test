@@ -12,7 +12,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.js"></script>
-
+<script src="/jsstore.worker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
 </head>
 
 <body>
@@ -52,22 +53,6 @@
 		}
 		function w3_close() {
 			document.getElementById("mySidebar").style.display = "none";
-		}
-
-		// Progress Bars
-		function move() {
-			var elem = document.getElementById("myBar");
-			var width = 5;
-			var id = setInterval(frame, 10);
-			function frame() {
-				if (width == 100) {
-					clearInterval(id);
-				} else {
-					width++;
-					elem.style.width = width + '%';
-					elem.innerHTML = width * 1 + '%';
-				}
-			}
 		}
 
 		var worker = new Worker('/worker.js');
