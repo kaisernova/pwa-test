@@ -11,6 +11,22 @@ Copyright 2015, 2019 Google Inc. All Rights Reserved.
  limitations under the License.
 */
 
+importScripts('https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/9.9.1/firebase-messaging.js');
+
+firebase.initializeApp({
+    apiKey: "AIzaSyDiTgNck9EhaHBv90bshqFRXJA292Vynn4",
+    authDomain: "irspwa.firebaseapp.com",
+    projectId: "irspwa",
+    storageBucket: "irspwa.appspot.com",
+    messagingSenderId: "911158161108",
+    appId: "1:911158161108:web:e9428e82a948662d5a9541"
+});
+const messaging = firebase.messaging();
+
+
+
+
 // Incrementing OFFLINE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 const OFFLINE_VERSION = 1;

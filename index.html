@@ -11,7 +11,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.js"></script>	
+	src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.js"></script>
 
 </head>
 
@@ -82,6 +82,47 @@
 			worker.postMessage(json);
 		}
 	</script>
+	<script type="module">
+ // Import the functions you need from the SDKs you need
+import {
+    initializeApp, firebase
+}
+from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyDiTgNck9EhaHBv90bshqFRXJA292Vynn4",
+    authDomain: "irspwa.firebaseapp.com",
+    projectId: "irspwa",
+    storageBucket: "irspwa.appspot.com",
+    messagingSenderId: "911158161108",
+    appId: "1:911158161108:web:e9428e82a948662d5a9541"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+const askForPermissionToReceiveNotifications = async () => {
+  try {
+    const messaging = firebase.messaging();
+    await messaging.requestPermission();
+    const token = await messaging.getToken();
+    console.log('Your token is:', token);
+    
+    return token;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+
+
+	</script>
+
+
 
 </body>
 
