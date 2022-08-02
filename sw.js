@@ -11,10 +11,16 @@ Copyright 2015, 2019 Google Inc. All Rights Reserved.
  limitations under the License.
 */
 
-importScripts('https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/9.9.1/firebase-messaging.js');
+import {
+    initializeApp 
+}
+from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+import {
+	getMessaging
+}
+from "https://www.gstatic.com/firebasejs/9.9.1/firebase-messaging.js";
 
-firebase.initializeApp({
+initializeApp({
     apiKey: "AIzaSyDiTgNck9EhaHBv90bshqFRXJA292Vynn4",
     authDomain: "irspwa.firebaseapp.com",
     projectId: "irspwa",
@@ -22,7 +28,7 @@ firebase.initializeApp({
     messagingSenderId: "911158161108",
     appId: "1:911158161108:web:e9428e82a948662d5a9541"
 });
-const messaging = firebase.messaging();
+const messaging = getMessaging();
 
 
 
