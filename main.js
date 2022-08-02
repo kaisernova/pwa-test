@@ -41,11 +41,103 @@ function getServerUrl() {
 	return window.location.origin;
 }
 
+//**************************************** */
+var connection = new JsStore.Connection(new Worker('jsstore.worker.min.js'));
+var dbName = 'irs_db';
+var table = 'persona';
+async function initDb() {
+    var tblPersona = {
+        name: table,
+        columns: {
+            // Here "Id" is name of column
+            id: {
+                primaryKey: true,
+                autoIncrement: true
+            },
+            nombres: {
+                notNull: true,
+                dataType: "string"
+            },
+            identificacion: {
+                notNull: true,
+                dataType: "string"
+            },
+            fechaNacimiento: {
+                notNull: true,
+                dataType: "date_time"
+            },
+			activo: {
+                notNull: true,
+                dataType: "boolean"
+            }
+        }
+    };
+    var database = {
+        name: dbName,
+        tables: [tblPersona]
+    }
+    const isDbCreated = await connection.initDb(database);
+    if (isDbCreated === true) {
+        console.log("db created");
+        // here you can prefill database with some data
+    } else {
+        console.log("db opened");
+    }
+}
+/*
+async function execDb() {
+
+    var value = {
+        itemName: 'Blue Jeans',
+        price: 2000,
+        quantity: 1000
+    }
+
+    var insertCount = await connection.insert({
+        into: 'Product',
+        values: [value]
+    });
+
+    console.log(`${insertCount} rows inserted`);
+    // results will be array of objects
+    var results = await connection.select({
+        from: 'Product',
+        where: {
+            price: 2000
+        }
+    });
+
+    console.log(results.length + 'record found');
+    console.log(JSON.stringify(results));
+
+    var rowsUpdated = await connection.update({
+        in: 'Product',
+        where: {
+            itemName: {
+                like: '%black%'
+            }
+        },
+        set: {
+            quantity: 2000
+        }
+    });
+    console.log(rowsUpdated + ' rows updated');
+    var rowsDeleted = await connection.remove({
+        from: 'Product',
+        where: {
+            price: 2000
+        }
+    });
+    console.log(rowsDeleted + ' record deleted');
+
+}
+*/
+
+//**************************************** */
 
 
 
-
-window.onload = () => {
+window.onload = async () => {
 	'use strict';
 	/*
 	if ('serviceWorker' in navigator) {
@@ -57,7 +149,7 @@ window.onload = () => {
 	console.log("handles");
 	window.addEventListener('online', handleConnection);
 	window.addEventListener('offline', handleConnection);
-
+	await initDb();
 }
 
 let deferredPrompt;
