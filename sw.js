@@ -20,7 +20,7 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/9.9.1/firebase-messaging.js";
 
-initializeApp({
+const firebaseApp = initializeApp({
     apiKey: "AIzaSyDiTgNck9EhaHBv90bshqFRXJA292Vynn4",
     authDomain: "irspwa.firebaseapp.com",
     projectId: "irspwa",
@@ -28,7 +28,7 @@ initializeApp({
     messagingSenderId: "911158161108",
     appId: "1:911158161108:web:e9428e82a948662d5a9541"
 });
-const messaging = getMessaging();
+const messaging = getMessaging(firebaseApp);
 
 
 
