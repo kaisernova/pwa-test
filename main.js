@@ -127,9 +127,9 @@ async function deleteAll() {
 
 async function registrar() {
 	var persona = {};
-	persona.nombres = document.getElementById('nombres');
-	persona.identificacion = document.getElementById('identificacion');
-	persona.fechaNacimiento = document.getElementById('fechaNacimiento');
+	persona.nombres = document.getElementById('nombres').value;
+	persona.identificacion = document.getElementById('identificacion').value;
+	persona.fechaNacimiento = document.getElementById('fechaNacimiento').value;
 	await insert(persona);
 	limpiar();
 	
