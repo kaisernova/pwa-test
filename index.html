@@ -36,9 +36,7 @@
 		</div>
 	</header>
 
-	<button onclick="acordeon('form_persona')"
-		class="w3-button w3-block w3-black w3-left-align">Registro de
-		Personas</button>
+	<button onclick="acordeon('form_persona')" class="w3-button w3-block w3-black w3-left-align">Registro de Personas</button>
 	<div id="form_persona" class="w3-hide w3-animate-left">
 		<div class="w3-container w3-card-4">			
 			<p>
@@ -49,18 +47,16 @@
 				<label class="w3-text-blue"><b>Identificaci&oacute;n</b></label> 
 				<input class="w3-input w3-border" id="identificacion" name="identificacion" type="text">
 			</p>
-			<p>
-  				<input class="w3-check" id="activo" type="checkbox" checked="checked">
-  				<label>Activo?</label>
-  			</p>
   			<p>
 				<label class="w3-text-blue"><b>Fecha Nacimiento</b></label> 
 				<input type="date" id="fechaNacimiento" name="fechaNacimiento">
-			</p>  			  		
+			</p> 		  		
 			<p>
-				<button class="w3-btn w3-blue" onclick="alert('here')">Guardar</button>
+				<button class="w3-btn w3-blue" onclick="regitrar();">Guardar</button>
 			</p>
-
+			<p>
+				<button class="w3-btn w3-red" onclick="limpiar();">Limpiar</button>
+			</p>
 		</div>
 	</div>
 

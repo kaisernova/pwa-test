@@ -84,11 +84,7 @@ async function initDb() {
 			},
 			fechaNacimiento: {
 				notNull: true,
-				dataType: "date_time"
-			},
-			activo: {
-				notNull: true,
-				dataType: "boolean"
+				dataType: "string"
 			}
 		}
 	};
@@ -105,56 +101,45 @@ async function initDb() {
 	}
 }
 
-
-
-/*
-async function execDb() {
-
-	var value = {
-		itemName: 'Blue Jeans',
-		price: 2000,
-		quantity: 1000
-	}
-
+async function insert(value) {
 	var insertCount = await connection.insert({
-		into: 'Product',
+		into: table,
 		values: [value]
 	});
 
 	console.log(`${insertCount} rows inserted`);
-	// results will be array of objects
+	return insertCount;
+}
+async function selectAll() {
 	var results = await connection.select({
-		from: 'Product',
-		where: {
-			price: 2000
-		}
+		from: table
 	});
+	return results;
+}
 
-	console.log(results.length + 'record found');
-	console.log(JSON.stringify(results));
-
-	var rowsUpdated = await connection.update({
-		in: 'Product',
-		where: {
-			itemName: {
-				like: '%black%'
-			}
-		},
-		set: {
-			quantity: 2000
-		}
-	});
-	console.log(rowsUpdated + ' rows updated');
+async function deleteAll() {
 	var rowsDeleted = await connection.remove({
-		from: 'Product',
-		where: {
-			price: 2000
-		}
+		from: 'Product'
 	});
 	console.log(rowsDeleted + ' record deleted');
-
+	return rowsDeleted;
 }
-*/
+
+async function registrar() {
+	var persona = {};
+	persona.nombres = document.getElementById('nombres');
+	persona.identificacion = document.getElementById('identificacion');
+	persona.fechaNacimiento = document.getElementById('fechaNacimiento');
+	await insert(persona);
+	limpiar();
+	
+}
+
+function limpiar() {
+	document.getElementById('nombres').value="";
+	document.getElementById('identificacion').value="";
+	document.getElementById('fechaNacimiento').value="";
+} 
 
 //**************************************** */
 
