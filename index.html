@@ -60,9 +60,29 @@
 		</div>
 	</div>
 	<button onclick="acordeon('container_personas')" class="w3-button w3-block w3-black w3-left-align">Personas Registradas</button>	
-	<div id="container_personas" class="w3-hide w3-animate-left">
+	<div id="container_personas" class="w3-hide w3-animate-left">	
 		<div class="w3-row-padding w3-padding-16 w3-center" id="personas"></div>
 	</div>
+	<button onclick="acordeon('archivo')" class="w3-button w3-block w3-black w3-left-align">Personas Registradas</button>	
+	<div id="archivo" class="w3-hide w3-animate-left">
+		<div class="w3-container w3-card-4">			
+			<p>	
+				<label class="w3-text-blue"><b>Archivo</b></label> 
+				<input type="file" id="input-archivo" >
+			</p>
+		</div>
+		
+	</div>
+
+
+<script>
+  const fileSelector = document.getElementById('archivo');
+  fileSelector.addEventListener('change', (event) => {
+    const fileList = event.target.files;
+    console.log(fileList);
+  });
+</script>
+
 		
 	<hr>
 	
