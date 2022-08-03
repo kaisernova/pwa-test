@@ -39,14 +39,6 @@ function handleConnection() {
 }
 
 function isReachable(url) {
-	/**
-	 * Note: fetch() still "succeeds" for 404s on subdirectories,
-	 * which is ok when only testing for domain reachability.
-	 *
-	 * Example:
-	 *   https://google.com/noexist does not throw
-	 *   https://noexist.com/noexist does throw
-	 */
 	return fetch(url, { method: 'HEAD', mode: 'no-cors' })
 		.then(function(resp) {
 			return resp && (resp.ok || resp.type === 'opaque');
@@ -59,6 +51,39 @@ function isReachable(url) {
 function getServerUrl() {
 	//window.location.origin
 	return window.location.origin;
+}
+
+function obtenerInputArchivo() {
+	return document.getElementById('input-archivo');
+}
+function obtenerArchivo() {
+	var file = null;
+	if(obtenerInputArchivo().files && obtenerInputArchivo().files.length >0) {
+		file =	obtenerInputArchivo().files[0];
+	}
+	return file;
+}
+
+function cargarPersonasArchivo() {
+	var file = obtenerArchivo();
+	var label = document.getElementById('label-carga');
+	
+	if(file) {
+		var i = 0;
+		Papa.parse(file, {
+		worker: true,
+		step: function(row) {
+			console.log("Row:", row.data);
+			i++;
+			label.textContent = "Fila Procesada["+i+"]:"+ row.data;
+		},
+		complete: function() {
+			console.log("All done!");
+			label.textContent="completado " + i+" filas";
+		}
+	});
+	}
+	
 }
 
 //**************************************** */
@@ -131,39 +156,39 @@ async function registrar() {
 	persona.identificacion = document.getElementById('identificacion').value;
 	persona.fechaNacimiento = document.getElementById('fechaNacimiento').value;
 	await insert(persona);
-	
+
 	mostrarPersonas();
 	limpiar();
-	
+
 }
 
-async function mostrarPersonas(){
+async function mostrarPersonas() {
 	var personas = await selectAll();
 	var personasDiv = document.getElementById('personas');
 	removeAllChildNodes(personasDiv);
-	for(let i = 0; i < personas.length; i++){ 
-		var personaExistente =  personas[i];				
+	for (let i = 0; i < personas.length; i++) {
+		var personaExistente = personas[i];
 		var templatePersonas = document.getElementById('template-personas');
-		var clonedTemplatePersonas = templatePersonas.content.cloneNode(true);			
+		var clonedTemplatePersonas = templatePersonas.content.cloneNode(true);
 		clonedTemplatePersonas.querySelector(".id").textContent = personaExistente.id;
 		clonedTemplatePersonas.querySelector(".nombres").textContent = personaExistente.nombres;
 		clonedTemplatePersonas.querySelector(".identificacion").textContent = personaExistente.identificacion;
 		clonedTemplatePersonas.querySelector(".fechaNacimiento").textContent = personaExistente.fechaNacimiento;
-		personasDiv.insertBefore(clonedTemplatePersonas, personasDiv.firstChild);		
+		personasDiv.insertBefore(clonedTemplatePersonas, personasDiv.firstChild);
 	}
 }
 
 function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+	while (parent.firstChild) {
+		parent.removeChild(parent.firstChild);
+	}
 }
 
 function limpiar() {
-	document.getElementById('nombres').value="";
-	document.getElementById('identificacion').value="";
-	document.getElementById('fechaNacimiento').value="";
-} 
+	document.getElementById('nombres').value = "";
+	document.getElementById('identificacion').value = "";
+	document.getElementById('fechaNacimiento').value = "";
+}
 
 //**************************************** */
 
