@@ -131,6 +131,13 @@ async function registrar() {
 	persona.identificacion = document.getElementById('identificacion').value;
 	persona.fechaNacimiento = document.getElementById('fechaNacimiento').value;
 	await insert(persona);
+	
+	mostrarPersonas();
+	limpiar();
+	
+}
+
+async function mostrarPersonas(){
 	var personas = await selectAll();
 	var personasDiv = document.getElementById('personas');
 	removeAllChildNodes(personasDiv);
@@ -144,8 +151,6 @@ async function registrar() {
 		clonedTemplatePersonas.querySelector(".fechaNacimiento").textContent = personaExistente.fechaNacimiento;
 		personasDiv.insertBefore(clonedTemplatePersonas, personasDiv.firstChild);		
 	}
-	limpiar();
-	
 }
 
 function removeAllChildNodes(parent) {
@@ -178,6 +183,7 @@ window.onload = async () => {
 	window.addEventListener('offline', handleConnection);
 	handleConnection();
 	await initDb();
+	await mostrarPersonas();
 }
 
 let deferredPrompt;
