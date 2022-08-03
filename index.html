@@ -37,6 +37,7 @@
 	</header>
 
 	<button onclick="acordeon('form_persona')" class="w3-button w3-block w3-black w3-left-align">Registro de Personas</button>
+	<button onclick="acordeon('container_personas')" class="w3-button w3-block w3-black w3-left-align">Personas Registradas</button>
 	<div id="form_persona" class="w3-hide w3-animate-left">
 		<div class="w3-container w3-card-4">			
 			<p>
@@ -59,10 +60,34 @@
 			</p>
 		</div>
 	</div>
-
-
-
+	<div id="container_personas" class="w3-hide w3-animate-left">
+		<div class="w3-row-padding w3-padding-16 w3-center" id="personas"></div>
+	</div>
+		
 	<hr>
+	
+	<template id="template-personas">
+		<div class="w3-card-4">
+			<header class="w3-container w3-blue id">
+			</header>
+			<div class="w3-container">
+				<div>
+					<label>Nombres:</label>
+					<span class="nombres"></span>
+				</div>
+				<div>
+					<label>Identificacion:</label>
+					<span class="identificacion"></span>
+				</div>		
+				<div>
+					<label>Fecha Nacimiento:</label>
+					<span class="fechaNacimiento"></span>
+				</div>			
+			</div>	
+		</div>
+	</template>
+	
+	
 	<script src="main.js"></script>
 	<script>
 		/**

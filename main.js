@@ -131,8 +131,27 @@ async function registrar() {
 	persona.identificacion = document.getElementById('identificacion').value;
 	persona.fechaNacimiento = document.getElementById('fechaNacimiento').value;
 	await insert(persona);
+	var personas = await selectAll();
+	var personasDiv = document.getElementById('personas');
+	removeAllChildNodes(personasDiv);
+	for(let i = 0; i < personas.length; i++){ 
+		var personaExistente =  personas[i];				
+		var templatePersonas = document.getElementById('template-personas');
+		var clonedTemplatePersonas = templatePersonas.content.cloneNode(true);			
+		clonedTemplatePersonas.querySelector(".id").textContent = personaExistente.id;
+		clonedTemplatePersonas.querySelector(".nombres").textContent = personaExistente.nombres;
+		clonedTemplatePersonas.querySelector(".identificacion").textContent = personaExistente.identificacion;
+		clonedTemplatePersonas.querySelector(".fechaNacimiento").textContent = personaExistente.fechaNacimiento;
+		personasDiv.insertBefore(clonedTemplatePersonas, personasDiv.firstChild);		
+	}
 	limpiar();
 	
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
 
 function limpiar() {
