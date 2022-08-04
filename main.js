@@ -85,9 +85,10 @@ async function cargarPersonasArchivo() {
 					persona.id=i;
 					persona.nombres=row.data[0];
 					persona.identificacion=row.data[1];
-					persona.fechaNacimiento=row.data[2];																			
-					var insertado = await insertSkipValidation(persona);
-					console.log("insertado:"+insertado);					
+					persona.fechaNacimiento=row.data[2];
+					console.log("a insertar:"+persona);																		
+					insertSkipValidation(persona);
+										
 				}
 				
 			},
