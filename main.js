@@ -86,7 +86,8 @@ async function cargarPersonasArchivo() {
 					persona.nombres=row.data[0];
 					persona.identificacion=row.data[1];
 					persona.fechaNacimiento=row.data[2];
-					console.log("a insertar:"+persona);																		
+					console.log("insertando id:"+i);
+					label.textContent = "insertando id:"+i;																		
 					insertSkipValidation(persona);
 										
 				}
