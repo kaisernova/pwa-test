@@ -145,6 +145,7 @@ async function initDb() {
 async function insert(value) {
 	var insertCount = await connection.insert({
 		into: table,
+		validation:false,
 		values: [value]
 	});
 
@@ -198,8 +199,7 @@ async function registrar() {
 	persona.identificacion = document.getElementById('identificacion').value;
 	persona.fechaNacimiento = document.getElementById('fechaNacimiento').value;
 	await insert(persona);
-
-	await mostrarPersonas();
+	mostrarPersonas();
 	limpiar();
 
 }
