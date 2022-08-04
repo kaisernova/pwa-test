@@ -76,7 +76,7 @@ async function cargarPersonasArchivo() {
 		var i = 0;
 		Papa.parse(file, {
 			worker: true,
-			step: function(row) {
+			step: async function(row) {
 				console.log("Row:"+i);
 				//se asume que esta bien cada tupla
 				if(row.data.length>2) {
