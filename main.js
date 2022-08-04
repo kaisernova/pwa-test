@@ -253,6 +253,9 @@ window.onload = async () => {
 	handleConnection();
 	await initDb();
 	await mostrarPersonas();
+	document.getElementById("refrescar").onclick=async ()=>{
+            await mostrarPersonas();
+    };
 }
 
 let deferredPrompt;
@@ -262,6 +265,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 
+        
 const installApp = document.getElementById('installApp');
 
 installApp.addEventListener('click', async () => {
