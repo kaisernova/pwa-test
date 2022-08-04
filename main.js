@@ -73,27 +73,27 @@ async function cargarPersonasArchivo() {
 	var label = document.getElementById('label-carga');
 	label.textContent = "Procesando";	
 	if (file) {
-		var i = 0;
+		var i = await contar();				
 		Papa.parse(file, {
 			worker: true,
 			step: async function(row) {
 				console.log("Row:"+i);
 				//se asume que esta bien cada tupla
 				if(row.data.length>2) {
+					i++;
 					var persona = {};
+					persona.id=i;
 					persona.nombres=row.data[0];
 					persona.identificacion=row.data[1];
-					persona.fechaNacimiento=row.data[2];
-					var insertado = await insert(persona);
-					
-					i++;
+					persona.fechaNacimiento=row.data[2];																			
+					var insertado = await insertSkipValidation(persona);
 					console.log("insertado["+i+"]:"+insertado);
 				}
 				
 			},
 			complete: function() {
-				console.log("All done!");
-				label.textContent = "Completado " + i + " filas";
+				console.log("Reading done!");
+				
 				limpiarInputArchivo();
 			}
 		});
@@ -150,6 +150,20 @@ async function insert(value) {
 	//console.log(`${insertCount} rows inserted`);
 	return insertCount;
 }
+
+async function insertSkipValidation(value) {
+	var insertCount = await connection.insert({
+		into: table,
+		values: [value],
+		validation:false,
+		skipDataCheck:true
+	});
+
+	//console.log(`${insertCount} rows inserted`);
+	return insertCount;
+}
+
+
 async function selectAll() {
 	var results = await connection.select({
 		from: table,
