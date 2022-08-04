@@ -61,6 +61,9 @@
 	</div>
 	<button onclick="acordeon('container_personas')" class="w3-button w3-block w3-black w3-left-align">Personas Registradas (&uacute;ltimas 30)</button>	
 	<div id="container_personas" class="w3-hide w3-animate-left">
+		<p>
+			<button class="w3-btn w3-blue" onclick="await mostrarPersonas();">Refrescar</button>
+		</p>
 		<label id="contador"></label>	
 		<div class="w3-row-padding w3-padding-16 w3-center" id="personas"></div>
 	</div>

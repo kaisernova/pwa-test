@@ -73,8 +73,7 @@ async function cargarPersonasArchivo() {
 	var label = document.getElementById('label-carga');
 	label.textContent = "Procesando";	
 	if (file) {
-		var i = await contar();
-		var j = 0;				
+		var i = await contar();			
 		Papa.parse(file, {
 			worker: true,
 			step: async function(row) {
@@ -89,12 +88,7 @@ async function cargarPersonasArchivo() {
 					persona.identificacion=row.data[1];
 					persona.fechaNacimiento=row.data[2];																			
 					var insertado = await insertSkipValidation(persona);
-					console.log("insertado[i="+i+", j="+j+"]:"+insertado);
-					console.log("(j%10)==0="+((j%10)==0));
-					if((j%10)==0){
-						await mostrarPersonas();
-					}
-					
+					console.log("insertado:"+insertado);					
 				}
 				
 			},
