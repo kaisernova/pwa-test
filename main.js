@@ -71,8 +71,9 @@ function obtenerArchivo() {
 async function cargarPersonasArchivo() {
 	var file = obtenerArchivo();
 	var label = document.getElementById('label-carga');
-	label.textContent = "Procesando";	
+		
 	if (file) {
+		label.textContent = "Procesando";
 		var i = await contar();			
 		Papa.parse(file, {
 			worker: true,
