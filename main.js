@@ -67,19 +67,27 @@ function obtenerArchivo() {
 function cargarPersonasArchivo() {
 	var file = obtenerArchivo();
 	var label = document.getElementById('label-carga');
-
+	label.textContent = "Procesando";	
 	if (file) {
 		var i = 0;
 		Papa.parse(file, {
 			worker: true,
 			step: function(row) {
-				console.log("Row:", row.data);
-				i++;
-				label.textContent = "Fila Procesada[" + i + "]:" + row.data;
+				//console.log("Row:", row.data);
+				//se asume que esta bien cada tupla
+				if(row.data.length>2) {
+					var persona = {};
+					persona.nombre=row.data[0];
+					persona.identificacion=row.data[1];
+					persona.fechaNacimiento=row.data[2];
+					insert(persona);
+					i++;
+				}
+				
 			},
 			complete: function() {
 				console.log("All done!");
-				label.textContent = "completado " + i + " filas";
+				label.textContent = "Completado " + i + " filas";
 			}
 		});
 	}
@@ -129,11 +137,10 @@ async function initDb() {
 async function insert(value) {
 	var insertCount = await connection.insert({
 		into: table,
-		values: [value],
-		skipDataCheck: true
+		values: [value]
 	});
 
-	console.log(`${insertCount} rows inserted`);
+	//console.log(`${insertCount} rows inserted`);
 	return insertCount;
 }
 async function selectAll() {
@@ -141,7 +148,7 @@ async function selectAll() {
 		from: table,
 		order: {
 			by: "id",
-			type: "desc"
+			type: "asc"
 		},
 		limit: 30 
 	});
