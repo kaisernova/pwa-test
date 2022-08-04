@@ -59,8 +59,9 @@
 			</p>
 		</div>
 	</div>
-	<button onclick="acordeon('container_personas')" class="w3-button w3-block w3-black w3-left-align">Personas Registradas</button>	
-	<div id="container_personas" class="w3-hide w3-animate-left">	
+	<button onclick="acordeon('container_personas')" class="w3-button w3-block w3-black w3-left-align">Personas Registradas (&uacute;ltimas 30)</button>	
+	<div id="container_personas" class="w3-hide w3-animate-left">
+		<label id="contador"></label>	
 		<div class="w3-row-padding w3-padding-16 w3-center" id="personas"></div>
 	</div>
 	<button onclick="acordeon('archivo')" class="w3-button w3-block w3-black w3-left-align">Cargar Personas CSV</button>	

@@ -58,8 +58,8 @@ function obtenerInputArchivo() {
 }
 function obtenerArchivo() {
 	var file = null;
-	if(obtenerInputArchivo().files && obtenerInputArchivo().files.length >0) {
-		file =	obtenerInputArchivo().files[0];
+	if (obtenerInputArchivo().files && obtenerInputArchivo().files.length > 0) {
+		file = obtenerInputArchivo().files[0];
 	}
 	return file;
 }
@@ -67,23 +67,23 @@ function obtenerArchivo() {
 function cargarPersonasArchivo() {
 	var file = obtenerArchivo();
 	var label = document.getElementById('label-carga');
-	
-	if(file) {
+
+	if (file) {
 		var i = 0;
 		Papa.parse(file, {
-		worker: true,
-		step: function(row) {
-			console.log("Row:", row.data);
-			i++;
-			label.textContent = "Fila Procesada["+i+"]:"+ row.data;
-		},
-		complete: function() {
-			console.log("All done!");
-			label.textContent="completado " + i+" filas";
-		}
-	});
+			worker: true,
+			step: function(row) {
+				console.log("Row:", row.data);
+				i++;
+				label.textContent = "Fila Procesada[" + i + "]:" + row.data;
+			},
+			complete: function() {
+				console.log("All done!");
+				label.textContent = "completado " + i + " filas";
+			}
+		});
 	}
-	
+
 }
 
 //**************************************** */
@@ -129,7 +129,8 @@ async function initDb() {
 async function insert(value) {
 	var insertCount = await connection.insert({
 		into: table,
-		values: [value]
+		values: [value],
+		skipDataCheck: true
 	});
 
 	console.log(`${insertCount} rows inserted`);
@@ -137,6 +138,18 @@ async function insert(value) {
 }
 async function selectAll() {
 	var results = await connection.select({
+		from: table,
+		order: {
+			by: "id",
+			type: "desc"
+		},
+		limit: 30 
+	});
+	return results;
+}
+
+async function contar() {
+	var results = await connection.count({
 		from: table
 	});
 	return results;
@@ -164,6 +177,9 @@ async function registrar() {
 
 async function mostrarPersonas() {
 	var personas = await selectAll();
+	var contador = await contar();
+	var contadorLabel = document.getElementById('contador');
+	contadorLabel.textContent="Total registrado:"+contador+" registros";
 	var personasDiv = document.getElementById('personas');
 	removeAllChildNodes(personasDiv);
 	for (let i = 0; i < personas.length; i++) {
