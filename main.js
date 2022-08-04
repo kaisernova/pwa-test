@@ -81,7 +81,6 @@ async function cargarPersonasArchivo() {
 				//se asume que esta bien cada tupla
 				if(row.data.length>2) {
 					i++;
-					j++;
 					var persona = {};
 					persona.id=i;
 					persona.nombres=row.data[0];
