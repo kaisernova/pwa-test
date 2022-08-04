@@ -171,7 +171,7 @@ async function selectAll() {
 		from: table,
 		order: {
 			by: "id",
-			type: "asc"
+			type: "desc"
 		},
 		limit: 30 
 	});
@@ -195,6 +195,9 @@ async function deleteAll() {
 
 async function registrar() {
 	var persona = {};
+    var id = await contar();
+    id++;
+    persona.id = id;
 	persona.nombres = document.getElementById('nombres').value;
 	persona.identificacion = document.getElementById('identificacion').value;
 	persona.fechaNacimiento = document.getElementById('fechaNacimiento').value;
