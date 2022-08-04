@@ -81,7 +81,7 @@ function cargarPersonasArchivo() {
 				//se asume que esta bien cada tupla
 				if(row.data.length>2) {
 					var persona = {};
-					persona.nombre=row.data[0];
+					persona.nombres=row.data[0];
 					persona.identificacion=row.data[1];
 					persona.fechaNacimiento=row.data[2];
 					insert(persona);
