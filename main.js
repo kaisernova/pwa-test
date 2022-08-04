@@ -170,7 +170,7 @@ async function registrar() {
 	persona.fechaNacimiento = document.getElementById('fechaNacimiento').value;
 	await insert(persona);
 
-	mostrarPersonas();
+	await mostrarPersonas();
 	limpiar();
 
 }
