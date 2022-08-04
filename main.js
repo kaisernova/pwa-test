@@ -56,6 +56,10 @@ function getServerUrl() {
 function obtenerInputArchivo() {
 	return document.getElementById('input-archivo');
 }
+
+function limpiarInputArchivo() {
+	document.getElementById('input-archivo').value="";
+}
 function obtenerArchivo() {
 	var file = null;
 	if (obtenerInputArchivo().files && obtenerInputArchivo().files.length > 0) {
@@ -88,6 +92,7 @@ function cargarPersonasArchivo() {
 			complete: function() {
 				console.log("All done!");
 				label.textContent = "Completado " + i + " filas";
+				limpiarInputArchivo();
 			}
 		});
 	}
