@@ -68,7 +68,7 @@ function obtenerArchivo() {
 	return file;
 }
 
-function cargarPersonasArchivo() {
+async function cargarPersonasArchivo() {
 	var file = obtenerArchivo();
 	var label = document.getElementById('label-carga');
 	label.textContent = "Procesando";	
@@ -77,15 +77,17 @@ function cargarPersonasArchivo() {
 		Papa.parse(file, {
 			worker: true,
 			step: function(row) {
-				//console.log("Row:", row.data);
+				console.log("Row:"+i);
 				//se asume que esta bien cada tupla
 				if(row.data.length>2) {
 					var persona = {};
 					persona.nombres=row.data[0];
 					persona.identificacion=row.data[1];
 					persona.fechaNacimiento=row.data[2];
-					insert(persona);
+					var insertado = await insert(persona);
+					
 					i++;
+					console.log("insertado["+i+"]:"+insertado);
 				}
 				
 			},
