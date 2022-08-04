@@ -97,8 +97,7 @@ async function cargarPersonasArchivo() {
 				
 			},
 			complete: function() {
-				console.log("Reading done!");
-				
+				console.log("Reading done!");		
 				limpiarInputArchivo();
 			}
 		});
