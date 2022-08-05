@@ -17,10 +17,10 @@ async function instantiate(module, imports = {}) {
   const { exports } = await WebAssembly.instantiate(module, adaptedImports);
   const memory = exports.memory || imports.env.memory;
   const adaptedExports = Object.setPrototypeOf({
-    validarCedula(digitos) {
-      // assembly/index/validarCedula(~lib/array/Array<i32>) => i32
+    validarCedula(digitos, veces) {
+      // assembly/index/validarCedula(~lib/array/Array<i32>, i32) => i32
       digitos = __lowerArray((pointer, value) => { new Int32Array(memory.buffer)[pointer >>> 2] = value; }, 3, 2, digitos) || __notnull();
-      return exports.validarCedula(digitos);
+      return exports.validarCedula(digitos, veces);
     },
   }, exports);
   function __liftString(pointer) {
