@@ -100,9 +100,13 @@
   			 		  		
 			<p>
 				<button class="w3-btn w3-blue" id="boton-js">procesar JAVASCRIPT</button>
-			</p>
+			</p>			
 			<p>
 				<button class="w3-btn w3-red" id="boton-wasm">procesar WebAssembly</button>
+			</p>
+			<p>
+				<label class="w3-text-blue" id="tiempo-js"></label> 
+				<label class="w3-text-red"  id="tiempo-wasm"></label>
 			</p>
 		</div>
 	</div>
@@ -169,10 +173,14 @@
 		var veces = obtenerValorVeces();
 		if(cedula && veces && veces>0) {
 			var cedulaArray = cadenaNumeros(cedula);
+			const start = Date.now();	
 			for(var i = 0; i<veces; i++) {
 				var resultado = validarCedulaJS(cedulaArray);
 				console.log("[procesarValidacionJS]resultado = "+resultado);
 			}
+			const duration = Date.now() - start;
+			const durationSeg = duration/1000;
+			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "label-js");
 		}
 	}
 
@@ -181,10 +189,14 @@
 		var veces = obtenerValorVeces();
 		if(cedula && veces && veces>0) {
 			var cedulaArray= cadenaNumeros(cedula);
+			const start = Date.now();
 			for(var i = 0; i<veces; i++) {
 				var resultado = validarCedula(cedulaArray);
-				console.log("[procesarValidacionJS]resultado = "+resultado);
+				console.log("[procesarValidacionWASM]resultado = "+resultado);
 			}
+			const duration = Date.now() - start;
+			const durationSeg = duration/1000;
+			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "label-wasm");
 		}
 	}
 	document.getElementById("boton-js").addEventListener("click", procesarValidacionJS);
