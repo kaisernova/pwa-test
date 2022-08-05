@@ -92,17 +92,12 @@
 			<p>
 				<label class="w3-text-blue"><b>Cedula a validar</b></label> 
 				<input class="w3-input w3-border" id="cedula" type="text">
-			</p>
+			</p>			 			 		  		
 			<p>
-				<label class="w3-text-blue"><b>Veces a validar (carga)</b></label> 
-				<input class="w3-input w3-border" id="veces" type="number">
-			</p>
-  			 		  		
-			<p>
-				<button class="w3-btn w3-blue" id="boton-js">procesar JAVASCRIPT</button>
+				<button class="w3-btn w3-blue" id="boton-js">procesar validar JAVASCRIPT</button>
 			</p>			
 			<p>
-				<button class="w3-btn w3-red" id="boton-wasm">procesar WebAssembly</button>
+				<button class="w3-btn w3-red" id="boton-wasm">procesar validar WebAssembly</button>
 			</p>
 			<p>
 				<label class="w3-text-blue" id="tiempo-js"></label> 
@@ -172,7 +167,7 @@
 	
 	var procesarValidacionJS = function () {
 		var cedula = obtenerValorCedula();
-		var veces = obtenerValorVeces();
+		var veces = 1;//obtenerValorVeces();
 		if(cedula && veces && veces>0) {
 			var cedulaArray = cadenaNumeros(cedula);
 			fijarTextoLabel("Procesando JS", "tiempo-js");
@@ -181,13 +176,14 @@
 			console.log("JS resultado ="+resultado);						
 			const duration = Date.now() - start;
 			const durationSeg = duration/1000;
-			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "tiempo-js");
+			
+			fijarTextoLabel("Resultado:"+((resultado)?"VALIDO":"NO VALIDO")+", Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "tiempo-js");
 		}
 	}
 
 	var procesarValidacionWASM = function() {
 		var cedula = obtenerValorCedula();
-		var veces = obtenerValorVeces();
+		var veces = 1;//obtenerValorVeces();
 		if(cedula && veces && veces>0) {
 			var cedulaArray= cadenaNumeros(cedula);
 			fijarTextoLabel("Procesando WASM", "tiempo-wasm");
@@ -197,7 +193,7 @@
 			console.log("WASM resultado ="+resultado);
 			const duration = Date.now() - start;
 			const durationSeg = duration/1000;
-			fijarTextoLabel("Tiempo WASM:"+duration+" ms ("+durationSeg+" seg)", "tiempo-wasm");
+			fijarTextoLabel("Resultado:"+((resultado)?"VALIDO":"NO VALIDO")+", Tiempo WASM:"+duration+" ms ("+durationSeg+" seg)", "tiempo-wasm");
 		}
 	}
 	document.getElementById("boton-js").addEventListener("click", procesarValidacionJS);
