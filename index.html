@@ -175,6 +175,7 @@
 		var veces = obtenerValorVeces();
 		if(cedula && veces && veces>0) {
 			var cedulaArray = cadenaNumeros(cedula);
+			fijarTextoLabel("Procesando JS", "tiempo-js");
 			const start = Date.now();	
 			for(var i = 0; i<veces; i++) {
 				var resultado = validarCedulaJS(cedulaArray);
@@ -191,6 +192,7 @@
 		var veces = obtenerValorVeces();
 		if(cedula && veces && veces>0) {
 			var cedulaArray= cadenaNumeros(cedula);
+			fijarTextoLabel("Procesando WASM", "tiempo-wasm");
 			const start = Date.now();
 			for(var i = 0; i<veces; i++) {
 				var resultado = validarCedula(cedulaArray);
