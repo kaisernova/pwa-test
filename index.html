@@ -139,25 +139,7 @@
 	
 	
 	<script src="main.js"></script>
-	<script>
-		/**
-		<a href="javascript:void(0);" onclick="ejecutaWorker(); return false;">click worker</a>		
-		 */
-
-		var worker = new Worker('/worker.js');
-		worker.onmessage = function(event) {
-			console.log("ejecutando worker");
-			console.log(event.data);
-		};
-
-		function ejecutaWorker() {
-			var json = {
-				"algo" : "666"
-			};
-			worker.postMessage(json);
-		}
-	</script>
-
+	
 	<script
 		src="https://cdn.gravitec.net/storage/c4f5c9ab25dcb2e784f72e791b4d1f35/client.js"
 		async></script>
