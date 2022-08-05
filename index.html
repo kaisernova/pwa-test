@@ -177,7 +177,8 @@
 			var cedulaArray = cadenaNumeros(cedula);
 			fijarTextoLabel("Procesando JS", "tiempo-js");
 			const start = Date.now();				
-			var resultado = validarCedulaJS(cedulaArray, veces);							
+			var resultado = validarCedulaJS(cedulaArray, veces);
+			console.log("JS resultado ="+resultado);						
 			const duration = Date.now() - start;
 			const durationSeg = duration/1000;
 			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "tiempo-js");
@@ -191,7 +192,9 @@
 			var cedulaArray= cadenaNumeros(cedula);
 			fijarTextoLabel("Procesando WASM", "tiempo-wasm");
 			const start = Date.now();
+			
 			var resultado = validarCedula(cedulaArray, veces);
+			console.log("WASM resultado ="+resultado);
 			const duration = Date.now() - start;
 			const durationSeg = duration/1000;
 			fijarTextoLabel("Tiempo WASM:"+duration+" ms ("+durationSeg+" seg)", "tiempo-wasm");

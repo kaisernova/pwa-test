@@ -1,6 +1,10 @@
-export function validarCedula(digitos: Array < i32 > , veces: i32): i32 {
-    var valido = 0;
+export function validarCedula(digitosArray: Array<i32>, veces: i32): i32 {
+    var valido = 0;	
     for (var i = 0; i < veces; i++) {
+		var digitos = new Array<i32>(digitosArray.length);
+		for(var j=0; j<digitosArray.length; j++) {
+			digitos[j]=digitosArray[j];
+		}
         var codigo_provincia = digitos[0] * 10 + digitos[1];
         if (codigo_provincia >= 1 && (codigo_provincia <= 24 || codigo_provincia == 30)) {
             var digito_verificador = digitos.pop();

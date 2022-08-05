@@ -64,4 +64,4 @@ export const {
     catch { return globalThis.WebAssembly.compile(await (await import("node:fs/promises")).readFile(url)); }
   })(), {
   }
-))(new URL("release.wasm", import.meta.url));
+))(new URL("debug.wasm", import.meta.url));
