@@ -1,3 +1,9 @@
+function obtenerValorCedula() {
+		return cedula = document.getElementById('cedula').value;
+	}	
+	function obtenerValorVeces() {
+		return cedula = document.getElementById('veces').value;
+	}
 function cadenaNumeros(cadena){
 	return cadena.split('').map(function(item) {
 		return parseInt(item, 10);
