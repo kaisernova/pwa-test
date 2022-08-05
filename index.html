@@ -101,7 +101,7 @@
 				<button class="w3-btn w3-blue" id="boton-js">procesar JAVASCRIPT</button>
 			</p>
 			<p>
-				<button class="w3-btn w3-blue" id="boton-wasm">procesar WebAssembly</button>
+				<button class="w3-btn w3-red" id="boton-wasm">procesar WebAssembly</button>
 			</p>
 		</div>
 	</div>
@@ -161,10 +161,37 @@
 		async></script>
 	<script type="module">
 	import { validarCedula } from "./wasmcode/release.js";
-	var cedula = document.getElementById('cedula');
 
-	console.log("validarCedula(cedula)="+validarCedula(cedula));
-	console.log("validarCedulaJS(cedula)="+validarCedulaJS(cedula));
+	function obtenerValorCedula() {
+		return cedula = document.getElementById('cedula').value;
+	}	
+	function obtenerValorVeces() {
+		return cedula = document.getElementById('veces').value;
+	}
+	var procesarValidacionJS = function () {
+		var cedula = obtenerValorCedula();
+		var veces = obtenerValorVeces();
+		if(cedula && veces && veces>0) {
+			for(var i = 0; i<veces; i++) {
+				var resultado = validarCedulaJS(cedula);
+				console.log("[procesarValidacionJS]resultado = "+resultado);
+			}
+		}
+	}
+
+	var procesarValidacionWASM = function() {
+		var cedula = obtenerValorCedula();
+		var veces = obtenerValorVeces();
+		if(cedula && veces && veces>0) {
+			for(var i = 0; i<veces; i++) {
+				var resultado = validarCedula(cedula);
+				console.log("[procesarValidacionJS]resultado = "+resultado);
+			}
+		}
+	}
+	document.getElementById("boton-js").addEventListener("click", procesarValidacionJS);
+	document.getElementById("boton-wasm").addEventListener("click", procesarValidacionWASM);
+	
 	</script>
 
 </body>
