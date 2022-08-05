@@ -1,5 +1,9 @@
 function obtenerValorCedula() {
-		return cedula = document.getElementById('cedula').value;
+		var cedula = document.getElementById('cedula').value;
+		if(cedula) {
+			cedula = cedula.trim();
+		}
+		return cedula;
 }
 //function obtenerValorVeces() {
 //	return cedula = document.getElementById('veces').value;
