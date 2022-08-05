@@ -180,7 +180,7 @@
 			}
 			const duration = Date.now() - start;
 			const durationSeg = duration/1000;
-			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "label-js");
+			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "tiempo-js");
 		}
 	}
 
@@ -196,7 +196,7 @@
 			}
 			const duration = Date.now() - start;
 			const durationSeg = duration/1000;
-			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "label-wasm");
+			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "tiempo-wasm");
 		}
 	}
 	document.getElementById("boton-js").addEventListener("click", procesarValidacionJS);
