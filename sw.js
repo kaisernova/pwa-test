@@ -41,6 +41,15 @@ self.addEventListener('fetch', (event) => {
   if (event.request.mode === 'navigate') {
     event.respondWith((async () => {
       try {
+		const cache = await caches.open(CACHE_NAME);
+
+        // Try the cache first.
+        const cachedResponse = await cache.match(event.request);
+        if (cachedResponse !== undefined) {
+            // Cache hit, let's send the cached resource.
+            return cachedResponse;
+        } 	
+	
         // First, try to use the navigation preload response if it's supported.
         const preloadResponse = await event.preloadResponse;
         if (preloadResponse) {
@@ -57,15 +66,7 @@ self.addEventListener('fetch', (event) => {
         console.log('Fetch failed; returning offline page instead.', error);
 
         const cache = await caches.open(CACHE_NAME);
-        var cachedResponse = await cache.match(OFFLINE_URL);
-        if(!cachedResponse) {
-			for(var i =0; i<filesToCache.length; i++) {
-				cachedResponse = await cache.match(filesToCache[i]);
-				if(cachedResponse) {
-					break;
-				}
-			}
-		}
+        var cachedResponse = await cache.match(OFFLINE_URL);        
         return cachedResponse;
       }
     })());
