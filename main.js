@@ -1,3 +1,9 @@
+function cadenaNumeros(cadena){
+	return cadena.split('').map(function(item) {
+		return parseInt(item, 10);
+	});
+}
+
 // Side navigation
 function w3_open() {
 	var x = document.getElementById("mySidebar");

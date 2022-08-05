@@ -14,6 +14,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.js"></script>
 <script src="/jsstore.worker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js"></script>
+
 </head>
 
 <body>
@@ -81,9 +82,33 @@
 			<p>
 				<button class="w3-btn w3-blue" onclick="cargarPersonasArchivo();">Procesar</button>
 			</p>
-		</div>
-		
+		</div>		
 	</div>
+
+	<button onclick="acordeon('wasm')" class="w3-button w3-block w3-black w3-left-align">Prueba WASM</button>	
+	<div id="wasm" class="w3-hide w3-animate-left">
+		<div class="w3-container w3-card-4">			
+			<p>
+				<label class="w3-text-blue"><b>Cedula a validar</b></label> 
+				<input class="w3-input w3-border" id="cedula" type="text">
+			</p>
+			<p>
+				<label class="w3-text-blue"><b>Veces a validar (carga)</b></label> 
+				<input class="w3-input w3-border" id="veces" type="number">
+			</p>
+  			 		  		
+			<p>
+				<button class="w3-btn w3-blue" id="boton-js">procesar JAVASCRIPT</button>
+			</p>
+			<p>
+				<button class="w3-btn w3-blue" id="boton-wasm">procesar WebAssembly</button>
+			</p>
+		</div>
+	</div>
+
+
+
+
 		
 	<hr>
 	
@@ -134,7 +159,13 @@
 	<script
 		src="https://cdn.gravitec.net/storage/c4f5c9ab25dcb2e784f72e791b4d1f35/client.js"
 		async></script>
+	<script type="module">
+	import { validarCedula } from "./wasmcode/release.js";
+	var cedula = document.getElementById('cedula');
 
+	console.log("validarCedula(cedula)="+validarCedula(cedula));
+	console.log("validarCedulaJS(cedula)="+validarCedulaJS(cedula));
+	</script>
 
 </body>
 

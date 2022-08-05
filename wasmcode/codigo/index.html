@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="module">
+import { validarCedula } from "./build/release.js";
+function cadenaNumeros(cadena){
+	return cadena.split('').map(function(item) {
+		return parseInt(item, 10);
+	});
+}
+var cedula = cadenaNumeros('1711137525');
+document.body.innerText = validarCedula(cedula);
+</script>
+</head>
+<body></body>
+</html>

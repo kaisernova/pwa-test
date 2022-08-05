@@ -1,5 +1,3 @@
-// The entry file of your WebAssembly module.
-
 export function validarCedula(digitos: Array<i32>) :i32{
 	var valido = 0;
     var codigo_provincia = digitos[0] * 10 + digitos[1];
