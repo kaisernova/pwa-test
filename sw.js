@@ -8,7 +8,7 @@ var filesToCache = [
 '/validador_cedulaJS.js',
 'https://cdn.jsdelivr.net/npm/jsstore/dist/jsstore.min.js',
 'https://cdn.gravitec.net/storage/c4f5c9ab25dcb2e784f72e791b4d1f35/client.js',
-'main.js',
+'/main.js',
 '/wasmcode/release.js',
 '/wasmcode/release.wasm',
 '/wasmcode/release.wat'
