@@ -168,7 +168,7 @@
 		var cedula = obtenerValorCedula();
 		var veces = obtenerValorVeces();
 		if(cedula && veces && veces>0) {
-			cedulaArray= cadenaNumeros(cedula);
+			var cedulaArray = cadenaNumeros(cedula);
 			for(var i = 0; i<veces; i++) {
 				var resultado = validarCedulaJS(cedulaArray);
 				console.log("[procesarValidacionJS]resultado = "+resultado);
@@ -180,7 +180,7 @@
 		var cedula = obtenerValorCedula();
 		var veces = obtenerValorVeces();
 		if(cedula && veces && veces>0) {
-			cedulaArray= cadenaNumeros(cedula);
+			var cedulaArray= cadenaNumeros(cedula);
 			for(var i = 0; i<veces; i++) {
 				var resultado = validarCedula(cedulaArray);
 				console.log("[procesarValidacionJS]resultado = "+resultado);
