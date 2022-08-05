@@ -38,21 +38,16 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   // We only want to call event.respondWith() if this is a navigation request
   // for an HTML page.
-  if (event.request.mode === 'navigate') {
+  //if (event.request.mode === 'navigate') {
+	console.log("event.request.mode="+event.request.mode );
     event.respondWith((async () => {
-      try {
+      try {	
 		const cache = await caches.open(CACHE_NAME);
-		console.log(cache);
-		console.log("event.request="+event.request);
-		
-        // Try the cache first.
         const cachedResponse = await cache.match(event.request);
-        console.log("cachedResponse="+cachedResponse);
+        console.log("cachedResponse="+cachedResponse );
         if (cachedResponse !== undefined) {
-            // Cache hit, let's send the cached resource.
             return cachedResponse;
-        } 	
-	
+        }		
         // First, try to use the navigation preload response if it's supported.
         const preloadResponse = await event.preloadResponse;
         if (preloadResponse) {
@@ -73,7 +68,7 @@ self.addEventListener('fetch', (event) => {
         return cachedResponse;
       }
     })());
-  }
+  //}
 
 
 });
