@@ -106,6 +106,8 @@
 			</p>
 			<p>
 				<label class="w3-text-blue" id="tiempo-js"></label> 
+			</p>
+			<p>
 				<label class="w3-text-red"  id="tiempo-wasm"></label>
 			</p>
 		</div>
@@ -196,7 +198,7 @@
 			}
 			const duration = Date.now() - start;
 			const durationSeg = duration/1000;
-			fijarTextoLabel("Tiempo JS:"+duration+" ms ("+durationSeg+" seg)", "tiempo-wasm");
+			fijarTextoLabel("Tiempo WASM:"+duration+" ms ("+durationSeg+" seg)", "tiempo-wasm");
 		}
 	}
 	document.getElementById("boton-js").addEventListener("click", procesarValidacionJS);
