@@ -42,9 +42,12 @@ self.addEventListener('fetch', (event) => {
     event.respondWith((async () => {
       try {
 		const cache = await caches.open(CACHE_NAME);
-
+		console.log(cache);
+		console.log("event.request="+event.request);
+		
         // Try the cache first.
         const cachedResponse = await cache.match(event.request);
+        console.log("cachedResponse="+cachedResponse);
         if (cachedResponse !== undefined) {
             // Cache hit, let's send the cached resource.
             return cachedResponse;
